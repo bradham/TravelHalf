@@ -41,3 +41,18 @@ function middlePoint(lat1, lng1, lat2, lng2) {
 //document.getElementById("longitude").innerHTML = "Longitude : "+midPoint[0];
 //document.getElementById("latitude").innerHTML = "Latitude : "+midPoint[1];
 //console.log(middlePoint(35.1495, 90.0490, 36.1627, 86.7816));
+
+function getLatLong(address) {
+    //code or Places API call
+    var API_key = "AIzaSyBMdV8r0zSS5mDV7jyOBh1pjBlLSLqrhfA"
+    address = "114%20Northcrest%20Commons%20Cir%20Nashville%20TN";
+    //ajax call
+    var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + address + "&inputtype=textquery&fields=place_id,formatted_address,geometry&key=" + API_key;
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        var results = response.data;
+      }
+}
