@@ -1,0 +1,44 @@
+body {
+    background: url("../../assets/images/middle-ground.jpg") no-repeat 50% 50% fixed;
+    background-size: cover;
+}
+
+.jumbotron {
+    border-radius: 25px;
+    border: 2px solid whitesmoke;
+    background-color: orangered;
+    margin-top: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    opacity: 0.9;
+    max-width: 50%;
+    height: 200px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.lead {
+    text-align: center;
+    color: white;
+}
+
+.form-control {
+    color: black;
+    border: 2px solid orangered;
+    
+}
+
+.btn {
+    background-color: orangered;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: green;
+    border: 2px solid whitesmoke;
+}
