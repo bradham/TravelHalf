@@ -43,31 +43,52 @@ function middlePoint(lat1, lng1, lat2, lng2) {
 //console.log(middlePoint(35.1495, 90.0490, 36.1627, 86.7816));
 
 function getLatLong(address) {
-    //code or Places API call
-    var API_key = "AIzaSyBMdV8r0zSS5mDV7jyOBh1pjBlLSLqrhfA"
-    address = "114%20Northcrest%20Commons%20Cir%20Nashville%20TN";
-    var location = "36.16785,-86.77816";
-    //ajax call
-    var queryURL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext=114%20Northcrest%20Commons%20Cir%20Nashville%20TN&app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&gen=8";
-    //"https://places.api.here.com/places/v1/discover/search?app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&at=36.16785,-86.77816&q=114%20Northcrest%20Commons%20Cir%20Nashville%20TN"
-    //var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + address + "&inputtype=textquery&fields=place_id,formatted_address,geometry&key=" + API_key;
+    //Using Here API call
+    var hereAppID = "y6vNNavqmOIg2Qln308m"
+    var hereAppCode = "3cpZDQ3h70lnf5pf7tlncg"
+    var local = {};
+    //console.log("addr with spaces: " + address); 
     
+    // replace all space characters with %20 to build the correct url
+    address = address.replace(/ /g, "%20");
+    //console.log("addr with no spaces: " + address);
+
+    //Build url for ajax call
+    var queryURL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext=" + address + "&app_id=" + hereAppID + "&app_code=" + hereAppCode + "&gen=8";
+    //"https://places.api.here.com/places/v1/discover/search?app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&at=36.16785,-86.77816&q=114%20Northcrest%20Commons%20Cir%20Nashville%20TN"
+    console.log("URL: " + queryURL);
+
     $.ajax({
         url: queryURL,
-        //crossDomain: true,
-        //dataType: "json",
-        // headers: {
-        //     "host": "local",
-        //     "api-key": API_key,
-        //     "content-type": "application/Compri-meet"
-        // },
         method: "GET"
       }).then(function (response) {
-        var results = response.data;
-        console.log(JSON.stringify(response));
+        // capturing .data in a variable did not work but using the raw response did
+        // var results = response.data;
+        //console.log(JSON.stringify(response));
         console.log("Lat is: " + JSON.stringify(response.Response.View[0].Result[0].Location.NavigationPosition[0].Latitude));
-        //from google places api: results.candidates.geometry.location.lat
+        console.log("Lng is: " + JSON.stringify(response.Response.View[0].Result[0].Location.NavigationPosition[0].Longitude));
+
+        //Return the coordinates object
+        var lat = response.Response.View[0].Result[0].Location.NavigationPosition[0].Latitude;
+        var lng = response.Response.View[0].Result[0].Location.NavigationPosition[0].Longitude;
+
+        local = response.Response.View[0].Result[0].Location.NavigationPosition[0];
+        console.log("local object is - " + JSON.stringify(local));
+        return local;
+
       });
+
+    //   function sleep( millisecondsToWait ) {
+    //     var now = new Date().getTime();
+        
+    //     while ( new Date().getTime() < now + millisecondsToWait ) {
+    //     /* do nothing; this will exit once it reaches the time limit */
+    //     /* if you want you could do something and exit */
+    //     }
+    //   }
+    //   sleep(1000);
+      //return local;
 }
 
-getLatLong("");
+var coord = getLatLong("1 University Park Dr. Nashville TN");
+console.log("cooord object lat is - " + JSON.stringify(coord));
