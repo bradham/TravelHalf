@@ -46,13 +46,28 @@ function getLatLong(address) {
     //code or Places API call
     var API_key = "AIzaSyBMdV8r0zSS5mDV7jyOBh1pjBlLSLqrhfA"
     address = "114%20Northcrest%20Commons%20Cir%20Nashville%20TN";
+    var location = "36.16785,-86.77816";
     //ajax call
-    var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + address + "&inputtype=textquery&fields=place_id,formatted_address,geometry&key=" + API_key;
+    var queryURL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext=114%20Northcrest%20Commons%20Cir%20Nashville%20TN&app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&gen=8";
+    //"https://places.api.here.com/places/v1/discover/search?app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&at=36.16785,-86.77816&q=114%20Northcrest%20Commons%20Cir%20Nashville%20TN"
+    //var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + address + "&inputtype=textquery&fields=place_id,formatted_address,geometry&key=" + API_key;
     
     $.ajax({
         url: queryURL,
+        //crossDomain: true,
+        //dataType: "json",
+        // headers: {
+        //     "host": "local",
+        //     "api-key": API_key,
+        //     "content-type": "application/Compri-meet"
+        // },
         method: "GET"
       }).then(function (response) {
         var results = response.data;
-      }
+        console.log(JSON.stringify(response));
+        console.log("Lat is: " + JSON.stringify(response.Response.View[0].Result[0].Location.NavigationPosition[0].Latitude));
+        //from google places api: results.candidates.geometry.location.lat
+      });
 }
+
+getLatLong("");
