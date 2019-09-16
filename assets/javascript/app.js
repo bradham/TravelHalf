@@ -4,7 +4,8 @@ var hereAppID = "y6vNNavqmOIg2Qln308m"
 var hereAppCode = "3cpZDQ3h70lnf5pf7tlncg"
 var hereJsAPIkey = "htn_qGlLDzfKu2uOjQcLE6_82CZyJHHK_VAr9aI-Az4"
 var pointsArray = [];
-var coord = {};
+
+// Authenticate HERE js API
 var platform = new H.service.Platform({
     'apikey': hereJsAPIkey
 });
@@ -12,7 +13,7 @@ var platform = new H.service.Platform({
 // Obtain the default map types from the platform object:
 var defaultLayers = platform.createDefaultLayers();
 
-// Instantiate (and display) a map object:
+// Instantiate (and display) a map object with Nashville as default:
 var map = new H.Map(
     document.getElementById('mapArea'),
     defaultLayers.vector.normal.map,
@@ -64,14 +65,13 @@ function middlePoint(lat1, lng1, lat2, lng2) {
 
 function getAddr1(address) {
     //Using Here API call
-    var local;
     //console.log("addr with spaces: " + address); 
 
-    // replace all space characters with %20 to build the correct url
+    // Replace all space characters with %20 to build the correct url
     address = address.replace(/ /g, "%20");
     //console.log("addr with no spaces: " + address);
 
-    //Build url for ajax call
+    // Build url for ajax call
     var queryURL = "https://geocoder.api.here.com/6.2/geocode.json?searchtext=" + address + "&app_id=" + hereAppID + "&app_code=" + hereAppCode + "&gen=8";
     //"https://places.api.here.com/places/v1/discover/search?app_id=y6vNNavqmOIg2Qln308m&app_code=3cpZDQ3h70lnf5pf7tlncg&at=36.16785,-86.77816&q=114%20Northcrest%20Commons%20Cir%20Nashville%20TN"
     //console.log("URL: " + queryURL);
@@ -125,35 +125,24 @@ function getAddr1(address) {
             pointsArray = [];
         }
 
-        //local = response.Response.View[0].Result[0].Location.NavigationPosition[0];
-        //console.log("coord object in ajax is - " + JSON.stringify(local));
-
-        //coord = local;
-        //console.log("cooord object in ajax is - " + JSON.stringify(coord));
-        //Why doesn't this work!   
-        //return local;
-        //return lat;
-
     });
 }
 
-/* function renderMap() {
-    var queryURL;
 
-    var midP = middlePoint(pointsArray[0], pointsArray[1], pointsArray[2], pointsArray[3]);
+$("#submitButton").on("click", function (event) {
+    event.preventDefault();
+    var addr1 = $("#addressOne").val().trim();
+    var addr2 = $("#addressTwo").val().trim();
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
+    console.log("addr1: " + addr1);
+    console.log("addr1: " + addr2);
 
-};
- */
+    //getAddr1 must be called twice because of the 2 AJAX calls
+    //TO DO: Refactor function name and explore passing both addresses.
+    getAddr1(addr1);
+    getAddr1(addr2);
+    // getAddr1("1 University Park Dr. Nashville TN");
+    // getAddr1("114 Northest Commons Cir Nashville TN");    
 
-// console.log("cooord object before call is - " + JSON.stringify(coord)); 
-$(document).ready(function () {
-    getAddr1("1 University Park Dr. Nashville TN");
-    getAddr1("114 Northest Commons Cir Nashville TN");
-    //console.log("cooord object is - " + JSON.stringify(coord)); 
 });
 
