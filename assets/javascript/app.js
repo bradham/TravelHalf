@@ -2,9 +2,24 @@ var addressOne = "";
 var addressTwo = "";
 var hereAppID = "y6vNNavqmOIg2Qln308m"
 var hereAppCode = "3cpZDQ3h70lnf5pf7tlncg"
+var hereJsAPIkey = "htn_qGlLDzfKu2uOjQcLE6_82CZyJHHK_VAr9aI-Az4"
 var pointsArray = [];
-
 var coord = {};
+var platform = new H.service.Platform({
+    'apikey': hereJsAPIkey
+});
+
+// Obtain the default map types from the platform object:
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+  document.getElementById('mapArea'),
+  defaultLayers.vector.normal.map,
+  {
+    zoom: 10,
+    center: { lat: 52.5, lng: 13.4 }
+  });
 
 //  Find midpoint between two coordinates points
 
@@ -88,18 +103,18 @@ function getAddr1(address) {
       });
 }
 
-function renderMap() {
+/* function renderMap() {
     var queryURL;
 
     var midP = middlePoint(pointsArray[0], pointsArray[1], pointsArray[2], pointsArray[3]);
-    
+
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
 
 };
-
+ */
 console.log("cooord object before call is - " + JSON.stringify(coord)); 
 $(document).ready(function() {
     coord = getAddr1("1 University Park Dr. Nashville TN");
