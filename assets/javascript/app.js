@@ -14,12 +14,12 @@ var defaultLayers = platform.createDefaultLayers();
 
 // Instantiate (and display) a map object:
 var map = new H.Map(
-  document.getElementById('mapArea'),
-  defaultLayers.vector.normal.map,
-  {
-    zoom: 10,
-    center: { lat: 52.5, lng: 13.4 }
-  });
+    document.getElementById('mapArea'),
+    defaultLayers.vector.normal.map,
+    {
+        zoom: 10,
+        center: { lat: 36.174, lng: -86.768 }
+    });
 
 //  Find midpoint between two coordinates points
 
@@ -39,7 +39,7 @@ if (typeof (Number.prototype.toDeg) === "undefined") {
 
 // Define middle point function
 function middlePoint(lat1, lng1, lat2, lng2) {
-	
+
     // Longitude difference
     var dLng = (lng2 - lng1).toRad();
 
@@ -66,7 +66,7 @@ function getAddr1(address) {
     //Using Here API call
     var local;
     //console.log("addr with spaces: " + address); 
-    
+
     // replace all space characters with %20 to build the correct url
     address = address.replace(/ /g, "%20");
     //console.log("addr with no spaces: " + address);
@@ -77,30 +77,64 @@ function getAddr1(address) {
     //console.log("URL: " + queryURL);
 
     $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
         // capturing .data in a variable did not work but using the raw response did
         // var results = response.data;
         //console.log(JSON.stringify(response));
         console.log("Lat is: " + JSON.stringify(response.Response.View[0].Result[0].Location.NavigationPosition[0].Latitude));
         console.log("Lng is: " + JSON.stringify(response.Response.View[0].Result[0].Location.NavigationPosition[0].Longitude));
-            
+
         //Return the coordinates object
         pointsArray.push(response.Response.View[0].Result[0].Location.NavigationPosition[0].Latitude);
         pointsArray.push(response.Response.View[0].Result[0].Location.NavigationPosition[0].Longitude);
         console.log("array: " + pointsArray);
 
-        local = response.Response.View[0].Result[0].Location.NavigationPosition[0];
-        console.log("coord object in ajax is - " + JSON.stringify(local));
-        
+        if (pointsArray.length == 4) {
+            var midP = middlePoint(pointsArray[0], pointsArray[1], pointsArray[2], pointsArray[3]);
+            console.log("mipoint array: " + midP);
+
+            $("#mapArea").empty();
+            map = new H.Map(
+                document.getElementById('mapArea'),
+                defaultLayers.vector.normal.map,
+                {
+                    zoom: 15,
+                    center: { lat: midP[1], lng: midP[0] }
+                });
+
+            // Define a variable holding SVG mark-up that defines an icon image:
+            var svgMarkup = '<svg width="24" height="24" ' +
+                'xmlns="http://www.w3.org/2000/svg">' +
+                '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+                'height="22" /><text x="12" y="18" font-size="12pt" ' +
+                'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+                'fill="white">M</text></svg>';
+
+            // Create an icon, an object holding the latitude and longitude, and a marker:
+            var icon = new H.map.Icon(svgMarkup),
+                coords = { lat: midP[1], lng: midP[0] },
+                marker = new H.map.Marker(coords, { icon: icon });
+
+            // Add the marker to the map and center the map at the location of the marker:
+            map.addObject(marker);
+            map.setCenter(coords);
+
+            //Reset pointsArray array
+            pointsArray = [];
+        }
+
+        //local = response.Response.View[0].Result[0].Location.NavigationPosition[0];
+        //console.log("coord object in ajax is - " + JSON.stringify(local));
+
         //coord = local;
         //console.log("cooord object in ajax is - " + JSON.stringify(coord));
         //Why doesn't this work!   
         //return local;
         //return lat;
 
-      });
+    });
 }
 
 /* function renderMap() {
@@ -115,10 +149,11 @@ function getAddr1(address) {
 
 };
  */
-console.log("cooord object before call is - " + JSON.stringify(coord)); 
-$(document).ready(function() {
-    coord = getAddr1("1 University Park Dr. Nashville TN");
+
+// console.log("cooord object before call is - " + JSON.stringify(coord)); 
+$(document).ready(function () {
+    getAddr1("1 University Park Dr. Nashville TN");
     getAddr1("114 Northest Commons Cir Nashville TN");
-    console.log("cooord object is - " + JSON.stringify(coord)); 
+    //console.log("cooord object is - " + JSON.stringify(coord)); 
 });
 
