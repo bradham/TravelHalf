@@ -28,7 +28,6 @@ h1 {
 .form-control {
     color: black;
     border: 2px solid orangered;
-    
 }
 
 .btn {
@@ -42,3 +41,37 @@ h1 {
     background-color: green;
     border: 2px solid whitesmoke;
 }
+
+#mapArea {
+    max-width: 50%;
+    height: 480px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid orangered;
+    opacity: 0.8;
+}
+
+.table {
+    background: whitesmoke;
+    max-width: 75%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 2px solid orangered;
+    opacity: 0.8;    
+}
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { }
