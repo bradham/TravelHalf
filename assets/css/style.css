@@ -49,7 +49,6 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 2px solid orangered;
-    opacity: 0.8;
 }
 
 .table {
@@ -58,8 +57,7 @@ h1 {
     text-align: center;
     margin: auto;
     margin-bottom: 20px;
-    border: 2px solid orangered;
-    opacity: 0.8;    
+    border: 2px solid orangered;    
 }
 
 
