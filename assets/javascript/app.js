@@ -103,6 +103,16 @@ function getAddr1(address) {
                     zoom: 15,
                     center: { lat: midP[1], lng: midP[0] }
                 });
+            // add a resize listener to make sure that the map occupies the whole container
+            window.addEventListener('resize', () => map.getViewPort().resize());
+
+            //Step 3: make the map interactive
+            // MapEvents enables the event system
+            // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+            var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+            // Create the default UI components
+            var ui = H.ui.UI.createDefault(map, defaultLayers);
 
             // Define a variable holding SVG mark-up that defines an icon image:
             var svgMarkup = '<svg width="24" height="24" ' +
@@ -112,13 +122,32 @@ function getAddr1(address) {
                 'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
                 'fill="white">M</text></svg>';
 
+                var svgMarkupH = '<svg width="24" height="24" ' +
+                'xmlns="http://www.w3.org/2000/svg">' +
+                '<rect stroke="white" fill="#ff4500" x="1" y="1" width="22" ' +
+                'height="22" /><text x="12" y="18" font-size="12pt" ' +
+                'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+                'fill="white">H</text></svg>';
+
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon(svgMarkup),
                 coords = { lat: midP[1], lng: midP[0] },
                 marker = new H.map.Marker(coords, { icon: icon });
 
+            //Add marker to both original addresses
+            var iconH1 = new H.map.Icon(svgMarkupH),
+            coordsH1 = { lat: pointsArray[0], lng: pointsArray[1] },
+            markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
+
+
             // Add the marker to the map and center the map at the location of the marker:
             map.addObject(marker);
+            map.addObject(markerH1);
+
+            coordsH1 = { lat: pointsArray[2], lng: pointsArray[3] },
+            markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
+            map.addObject(markerH1);
+
             map.setCenter(coords);
 
             //Reset pointsArray array
