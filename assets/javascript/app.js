@@ -1,9 +1,12 @@
-var addressOne = "";
-var addressTwo = "";
 var hereAppID = "y6vNNavqmOIg2Qln308m"
 var hereAppCode = "3cpZDQ3h70lnf5pf7tlncg"
 var hereJsAPIkey = "htn_qGlLDzfKu2uOjQcLE6_82CZyJHHK_VAr9aI-Az4"
 var pointsArray = [];
+
+// hide the table at load
+// $(".table").hide();
+$("#button").hide();
+$("#restaurantLink").hide();
 
 // Authenticate HERE js API
 var platform = new H.service.Platform({
@@ -122,7 +125,7 @@ function getAddr1(address) {
                 'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
                 'fill="white">M</text></svg>';
 
-                var svgMarkupH = '<svg width="24" height="24" ' +
+            var svgMarkupH = '<svg width="24" height="24" ' +
                 'xmlns="http://www.w3.org/2000/svg">' +
                 '<rect stroke="white" fill="#ff4500" x="1" y="1" width="22" ' +
                 'height="22" /><text x="12" y="18" font-size="12pt" ' +
@@ -136,8 +139,8 @@ function getAddr1(address) {
 
             //Add marker to both original addresses
             var iconH1 = new H.map.Icon(svgMarkupH),
-            coordsH1 = { lat: pointsArray[0], lng: pointsArray[1] },
-            markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
+                coordsH1 = { lat: pointsArray[0], lng: pointsArray[1] },
+                markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
 
 
             // Add the marker to the map and center the map at the location of the marker:
@@ -145,23 +148,68 @@ function getAddr1(address) {
             map.addObject(markerH1);
 
             coordsH1 = { lat: pointsArray[2], lng: pointsArray[3] },
-            markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
+                markerH1 = new H.map.Marker(coordsH1, { icon: iconH1 });
             map.addObject(markerH1);
 
             map.setCenter(coords);
 
             //Reset pointsArray array
             pointsArray = [];
+
+            $(document).on('click', "button", function () {
+
+                // $(".table").show();
+                $("#restaurantLink").show();
+                
+
+                var queryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + midP[1] + "&lon=" + midP[0];
+
+                console.log(queryURL);
+
+                $.ajax({
+                    url: queryURL,
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'user-key': "44e3eb886288e37fcc4c4c4aedd454c3",
+                        'Accept': 'application/json',
+                        'Accept': 'text/HTML',
+                        'Accept': 'text/json'
+                    }
+
+                })
+
+                    .then(function (response) {
+                        console.log(response);
+
+                        $('<a>', {
+                            text: 'Click here to see the search results of nearby restaurants in this area!',
+                            href: response.link,
+                            click:function(){
+
+                            }
+                        }).appendTo('#restaurantLink');
+
+                
+
+                        // $("#restaurantLink").text("<a" + response.link + "</a>");
+                        // $("#restaurantTable > tbody").append("<tr><td>" + response.nearby_restaurants, Array().restaurant, name + "</td><td>" + response.nearby_restaurants, Array().restaurant, location, address + "</td><tr>");
+                        
+
+                    })
+            })
+
         }
 
     });
 }
 
-
 $("#submitButton").on("click", function (event) {
     event.preventDefault();
     var addr1 = $("#addressOne").val().trim();
     var addr2 = $("#addressTwo").val().trim();
+
+    $("#button").show();
 
     console.log("addr1: " + addr1);
     console.log("addr1: " + addr2);
@@ -171,7 +219,7 @@ $("#submitButton").on("click", function (event) {
     getAddr1(addr1);
     getAddr1(addr2);
     // getAddr1("1 University Park Dr. Nashville TN");
-    // getAddr1("114 Northest Commons Cir Nashville TN");    
+    // getAddr1("114 Northest Commons Cir Nashville TN"); 
+
 
 });
-
