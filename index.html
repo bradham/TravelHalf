@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Compri-Meet</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Compri-Meet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Links to HERE Libraries -->
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    
+  <!-- Links to HERE Libraries -->
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
 </head>
 
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4">Compri-Meet</h1>
-            <p class="lead">Lets find that middle ground!</p>
-        </div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Compri-Meet</h1>
+      <p class="lead">Lets find that middle ground!</p>
     </div>
-    <form>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-4">
-                <input type="text" class="form-control" id="addressOne" placeholder="Enter the first address...">
-            </div>
-            <!-- <div class="col-2"></div> -->
-            <div class="col-4">
-                <input type="text" class="form-control" id="addressTwo" placeholder="Enter the second address...">
-            </div>
-            <div class="col-2"></div>
-        </div>
-        <div class="col-12 text-center">
-            <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
+  </div>
+  <form>
     <div class="row">
-        <div class="col-12 text-center">
-            <!-- <p><b>Midpoint</b></p>
+      <div class="col-2"></div>
+      <div class="col-4">
+        <input type="text" class="form-control" id="addressOne" placeholder="Enter the first address...">
+      </div>
+      <!-- <div class="col-2"></div> -->
+      <div class="col-4">
+        <input type="text" class="form-control" id="addressTwo" placeholder="Enter the second address...">
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="col-12 text-center">
+      <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12 text-center">
+      <!-- <p><b>Midpoint</b></p>
                 <p class="result" id="longitude"></p>
                 <p class="result" id="latitude"></p> -->
-            <div id="mapArea">
-
-            </div>
-        </div>
+      <div id="mapArea">
+      </div>
     </div>
-    <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Restaurant</th>
-            <th scope="col">Address</th>
-            <th scope="col">Distance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+  </div>
+  <div class="col-12 text-center">
+    <button type="submit" id="button" class="btn btn-primary">Searh For Nearby Restaurants</button>
+  </div>
+  <div id="restaurantLink"></div>
+  <!-- <table class="table table-bordered" id="restaurantTable">
+    <thead>
+      <tr> -->
+        <!-- <th>#</th> -->
+        <!-- <th>Restaurants</th>
+        <th>Address</th> -->
+        <!-- <th>Distance</th> -->
+      <!-- </tr>
+    </thead>
+    <tbody> -->
+      <!-- <tr>
             <th scope="row">A</th>
             <td></td>
             <td></td>
@@ -90,12 +93,12 @@
             <td></td>
             <td></td>
             <td></td>
-          </tr>
-        </tbody>
-      </table>
+          </tr> -->
+    <!-- </tbody>
+  </table> -->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="assets/javascript/app.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="assets/javascript/app.js" type="text/javascript"></script>
 </body>
 
 </html>
