@@ -156,6 +156,9 @@ function getAddr1(address) {
             //Reset pointsArray array
             pointsArray = [];
 
+            //Show the restaurant button after the location is found
+            $("#button").show();
+
             $(document).on('click', "button", function () {
 
                 // $(".table").show();
@@ -209,7 +212,6 @@ $("#submitButton").on("click", function (event) {
     var addr1 = $("#addressOne").val().trim();
     var addr2 = $("#addressTwo").val().trim();
 
-    $("#button").show();
 
     console.log("addr1: " + addr1);
     console.log("addr1: " + addr2);
