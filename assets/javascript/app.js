@@ -122,17 +122,17 @@ function getAddr1(address) {
             var svgMarkup = '<svg width="24" height="24" ' +
                 'xmlns="http://www.w3.org/2000/svg">' +
                 '<rect stroke="white" fill="#1b468d" opacity="0.0" x="1" y="1" width="66" ' +
-                'height="66" /><text x="12" y="18" font-size="18pt" ' +
+                'height="66" /><text x="12" y="18" font-size="24px" ' +
                 'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
                 'fill="white">​&#127919;</text></svg>';  //&#127919; is emoji for target
 
-            //Starting "H" home icon
+            //Starting position car icon
             var svgMarkupH = '<svg width="24" height="24" ' +
                 'xmlns="http://www.w3.org/2000/svg">' +
-                '<rect stroke="white" fill="#ff4500" x="1" y="1" width="22" ' +
-                'height="22" /><text x="12" y="18" font-size="12pt" ' +
+                '<rect stroke="white" fill="#ff4500" opacity="0.0" x="1" y="1" width="22" ' +
+                'height="22" /><text x="12" y="18" font-size="24px" ' +
                 'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
-                'fill="white">H</text></svg>';
+                'fill="white">&#128664;</text></svg>'; //&#128664; is emoji for red car
 
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon(svgMarkup),
