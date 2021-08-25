@@ -1,68 +1,74 @@
 body {
-    background: url("../../assets/images/middle-ground.jpg") no-repeat 50% 50% fixed;
-    background-size: cover;
+  /* background: url("../../assets/images/middle-ground.jpg") no-repeat 50% 50% fixed; */
+  background-size: cover;
+  background-color: #a9a9a9;
 }
 
 .jumbotron {
-    border-radius: 25px;
-    border: 2px solid whitesmoke;
-    background-color: orangered;
-    margin-top: 20px;
-    margin-left: 25%;
-    margin-right: 25%;
-    opacity: 0.9;
-    max-width: 65%;
-    height: 15%;
+  border-radius: 25px;
+  border: 2px solid whitesmoke;
+  background-color: orangered;
+  margin-top: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+  opacity: 0.9;
+  /* max-width: 65%; */
+  height: 15%;
+}
+
+.navbar {
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  background-color: orangered;
 }
 
 h1 {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }
 
 .lead {
-    text-align: center;
-    color: white;
-    padding: 5px 10px 5px 10px;
+  text-align: center;
+  color: white;
+  padding: 5px 10px 5px 10px;
 }
 
 .form-control {
-    color: black;
-    border: 2px solid orangered;
+  color: black;
+  border: 2px solid orangered;
 }
 
 .btn {
-    background-color: orangered;
-    color: whitesmoke;
-    border: 2px solid whitesmoke;
-    margin-top: 10px;
+  background-color: orangered;
+  color: whitesmoke;
+  border: 2px solid whitesmoke;
+  margin-top: 10px;
 }
 
 .btn:hover {
-    background-color: green;
-    border: 2px solid whitesmoke;
+  background-color: green;
+  border: 2px solid whitesmoke;
 }
 
 #mapArea {
-    max-width: 95%;
-    height: 480px;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 2px solid orangered;
+  max-width: 95%;
+  height: 480px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid orangered;
 }
 
 #restaurantLink {
-    max-width: 50%;
-    height: 50px;
-    text-align: center;
-    background: whitesmoke;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-    border: 2px solid orangered; 
-
+  max-width: 50%;
+  height: 50px;
+  text-align: center;
+  background: whitesmoke;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  border: 2px solid orangered;
 }
 
 /* .table {
@@ -74,16 +80,18 @@ h1 {
     border: 2px solid orangered;    
 } */
 
-
-
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { }
+@media (min-width: 576px) {
+}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { }
+@media (min-width: 768px) {
+}
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { }
+@media (min-width: 992px) {
+}
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { }
+@media (min-width: 1200px) {
+}
